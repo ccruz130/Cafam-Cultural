@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turismo San Pedro de Macorís</title>
+  <link rel="stylesheet" href="Style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Explora San Pedro de Macorís</h1>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="tours.html">Reservas</a></li>    
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="inicio">
+    <div class="video-container">
+      <video autoplay muted loop id="videoFondo">
+        <source src="img/fondoinicio.mp4" type="video/mp4">
+        Tu navegador no soporta el video.
+      </video>
+      <div class="contenido-inicio">
+        <h2>Bienvenidos a San Pedro</h2>
+        <p>Descubre las maravillas naturales, la cultura y la calidez de nuestra gente con nuestros tours personalizados.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <h2>Galería de Fotos</h2>
+    <div class="galeria">
+      <img src="img/imagen1.jpeg" alt="Imagen 1" class="zoom" onclick="abrirModal(0)">
+      <img src="img/imagen2.jpeg" alt="Imagen 2" class="zoom" onclick="abrirModal(1)">
+      <img src="img/imagen3.jpeg" alt="Imagen 3" class="zoom" onclick="abrirModal(2)">
+      <img src="img/imagen4.jpeg" alt="Imagen 4" class="zoom" onclick="abrirModal(3)">
+      <img src="img/imagen5.jpeg" alt="Imagen 5" class="zoom" onclick="abrirModal(4)">
+      <img src="img/imagen6.jpeg" alt="Imagen 6" class="zoom" onclick="abrirModal(5)">
+      <img src="img/imagen7.jpeg" alt="Imagen 7" class="zoom" onclick="abrirModal(6)">
+      <img src="img/imagen8.jpeg" alt="Imagen 8" class="zoom" onclick="abrirModal(7)">
+    </div>
+
+    <div id="modal" class="modal">
+      <span class="cerrar" onclick="cerrarModal()">&times;</span>
+      <img class="modal-contenido" id="imagenAmpliada">
+      <div class="controles">
+        <button onclick="anterior()">&#10094;</button>
+        <button onclick="siguiente()">&#10095;</button>
+      </div>
+    </div>
+  </section>
+
+      
+      <section id="sobre-nosotros">
+        <div class="sobre-wrapper">
+          <!-- Título y Descripción -->
+          <div class="sobre-titulo">
+            <h2>Sobre Nosotros</h2>
+            <p>Conoce más sobre nuestra misión, visión y valores que nos impulsan.</p>
+          </div>
+          
+          <!-- Tarjetas de Misión, Visión y Valores -->
+          <div class="sobre-contenido">
+            <div class="sobre-tarjeta">
+              <h3>Misión</h3>
+              <p>Brindar experiencias únicas y responsables que promuevan la cultura y el turismo en San Pedro de Macorís.</p>
+            </div>
+            <div class="sobre-tarjeta">
+              <h3>Visión</h3>
+              <p>Convertirnos en el destino turístico más destacado del Caribe, respetuoso con el medio ambiente y las comunidades locales.</p>
+            </div>
+            <div class="sobre-tarjeta">
+              <h3>Valores</h3>
+              <ul class="valores-lista">
+                <li>Compromiso</li>
+                <li>Responsabilidad</li>
+                <li>Respeto por el medio ambiente</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Imagen debajo de la sección de Misión, Visión y Valores -->
+        <img src="img/sobre-nosotros.jpeg" alt="Imagen Sobre Nosotros" class="sobre-imagen">
+      </section>
+  
+    <!-- Sección Botón de Reserva -->
+<section id="paquetes-turisticos">
+  <div class="container-reserva">
+    <h2>Descubre nuestros paquetes turísticos</h2>
+    <a href="tours.html" class="btn-reservar">¡Reserva ya!</a>
+  </div>
+</section>
+
+<!-- Sección de Contacto -->
+<section id="contacto">
+  <div class="contacto-container">
+    <h2>Contáctanos</h2>
+    <p>¿Tienes preguntas, sugerencias o necesitas más información? ¡Estamos aquí para ayudarte!</p>
+
+    <div class="formulario-card">
+      <form action="mailto:info@turismospm.com" method="post" enctype="text/plain">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+        </div>
+
+        <div class="form-group">
+          <label for="correo">Correo electrónico:</label>
+          <input type="email" id="correo" name="correo" placeholder="Tu correo" required>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje:</label>
+          <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+  <script>
+    const imagenes = [
+      'img/imagen1.jpeg',
+      'img/imagen2.jpeg',
+      'img/imagen3.jpeg',
+      'img/imagen4.jpeg',
+      'img/imagen5.jpeg',
+      'img/imagen6.jpeg',
+      'img/imagen7.jpeg',
+      'img/imagen8.jpeg'
+    ];
+
+    let imagenActual = 0;
+
+    function abrirModal(indice) {
+      imagenActual = indice;
+      document.getElementById('imagenAmpliada').src = imagenes[imagenActual];
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function cerrarModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function anterior() {
+      imagenActual = (imagenActual - 1 + imagenes.length) % imagenes.length;
+      document.getElementById('imagenAmpliada').src = imagenes[imagenActual];
+    }
+
+    function siguiente() {
+      imagenActual = (imagenActual + 1) % imagenes.length;
+      document.getElementById('imagenAmpliada').src = imagenes[imagenActual];
+    }
+  </script>
+</body>
+</html>

